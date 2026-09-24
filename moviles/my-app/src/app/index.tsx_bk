@@ -1,0 +1,66 @@
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { ScrollView, StyleSheet } from 'react-native';
+import { FlatList } from 'react-native';
+import Card from '../components/ui/card';
+import {CardItem} from '../types/CardItem';
+import { useRouter } from 'expo-router';
+
+
+const MOCK_DATA: CardItem[] = [
+  {
+    id: '1',
+    title: 'Mazatlan - CID MORO',
+    image: 'https://picsum.photos/id/12/2500/1667',
+    description: 'MXN 1500.00 - ALL INCLUSIVE',
+  },
+  {
+    id: '2',
+    title: 'Puerto Vallarta - HOTEL VILLA DEL MAR',
+    image: 'https://picsum.photos/id/13/2500/1667',
+    description: 'MXN 2000.00',
+  },
+  {
+    id: '3',
+    title: 'Media Luna - HOTEL MEDIA LUNA',
+    image: 'https://picsum.photos/id/14/2500/1667',
+    description: 'MXN 2500.00 - ALL INCLUSIVE',
+  },
+]
+
+export default function HomeScreen() {
+  const router = useRouter();
+  return(
+      <FlatList
+        data={MOCK_DATA}
+        keyExtractor={(item) => item.id}
+        contentContainerStyle={style.listContent}
+        renderItem={({ item }) => (
+          <Card
+            title={item.title}
+            image={item.image}
+            description={item.description}
+            onPress= {() => router.push({
+              pathname: '/details',
+              params: { item: JSON.stringify(item) },
+            })}
+          />
+        )}
+        showsVerticalScrollIndicator={false}
+
+      />
+    
+  )
+}
+
+
+const style = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#ececec',
+    },
+    listContent: {
+      paddingTop: 16,
+      paddingBottom: 16,
+    },       
+  }
+)
