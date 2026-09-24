@@ -109,7 +109,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#f5f5f5'
     },
     listContent: {
-        padding: 16
+        padding: 16,
+        gap: 16,
     },
     emptyText: {
         fontSize: 16,
@@ -125,7 +126,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#c0392b',
         textAlign: 'center',
-        marginBottom: 16
+        marginBottom: 16,
+        paddingHorizontal: 24,
     },
     retryButton: {
         paddingVertical: 10,
